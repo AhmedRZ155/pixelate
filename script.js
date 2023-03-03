@@ -10,19 +10,20 @@ function makeRow() {
 }
 
 let rowAdd = document.getElementById("add-row");
-let select = document.getElementsByTagName("select");
+let select = document.getElementsByTagName("select")[0];
+let chosenColor = "red";
+
 rowAdd.addEventListener("click", makeRow);
 table.addEventListener("click", colorize);
 
+select.addEventListener("change", function (event) {
+  chosenColor = event.target.value;
+});
 function colorize(event) {
   let target = event.target;
-  if (target.className.length) {
+  if (target.className === chosenColor) {
     target.className = "";
   } else {
-    target.className = "blue";
+    target.className = chosenColor;
   }
 }
-
-select.addEventListener("change", function () {
-  console.log(event.target.value);
-});
